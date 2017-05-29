@@ -1,6 +1,13 @@
 /**index.wxss**/
-@import "../home/home.wxss";
+@import "./../home/home.wxss";
 
-.posts-list {
-  margin-top: 5px;
+/*列表 list*/
+.scroll-posts-list{
+  overflow: hidden;
+  margin-top: 36px;
+}
+.posts-list{
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #E9EAEB;
 }

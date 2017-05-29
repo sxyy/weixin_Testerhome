@@ -1,6 +1,8 @@
 <!--index.wxml-->
+<import src="../template/template.wxml"/>
 <view class="container">
-  <include src="../template/template.wxml"/>
+  <template is="topicList" data="{{datas}}"/>
+
   <loading hidden="{{hidden}}">
     加载中...
   </loading>

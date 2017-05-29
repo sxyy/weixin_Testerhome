@@ -33,7 +33,8 @@ Page({
         self.setData({
           datas: self.data.datas.concat(res.data.topics.map(function (item) {
             item.created_at = util.getDateDiff(new Date(item.created_at));
-            if (item.user.avatar_url.indexOf('testerhome') !== -1) {
+            if (item.user.avatar_url.indexOf('https://testerhome') !== -1) {
+            }else if (item.user.avatar_url.indexOf('testerhome') !== -1) {
               item.user.avatar_url = 'https:' + item.user.avatar_url;
             }else {
               item.user.avatar_url = 'https://testerhome.com/' + item.user.avatar_url;

@@ -1,9 +1,6 @@
 <!--index.wxml-->
-<view class="container">
-  <!--<modal title="提示" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" mask bindconfirm="modalChange" bindcancel="modalChange">
-            {{modalText}}
-  </modal>-->
-  
+<import src="../template/template.wxml"/>
+<view class="container">  
   <view class="top-bar">
     <view class="top-bar-item" style="color:{{recent}}" id="recent" catchtap="onTapTag">最新</view>
     <view class="top-bar-item" style="color:{{popular}}" id="popular" catchtap="onTapTag">最热</view>
@@ -11,8 +8,7 @@
     <view class="top-bar-item" style="color:{{excellent}}" id="excellent" catchtap="onTapTag">精华</view>
   </view>
   <view class="flag-line" style="margin-left:{{flag_position}}"></view>
-
-  <include src="../template/template.wxml"/>
+  <template is="topicList" data="{{listMargin, scrollHeight, datas, type, indicatorDots, autoplay, interval, duration, banner}}"/>
   <loading hidden="{{hidden}}">
     加载中...
   </loading>

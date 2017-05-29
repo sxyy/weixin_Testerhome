@@ -1,3 +1,4 @@
+@import "../../wxParse/wxParse.wxss";
 .detail-post {
   background-color: #eee;
   overflow: hidden;
@@ -33,6 +34,20 @@
   padding: 13px 18px 0 18px;
 
 }
+
+.detail-post-comment {
+  background-color: #fff;
+}
+
+.detail-post-comment-title {
+  font-size: 20px;
+  line-height: 50px;
+  padding: 0 18px;
+  color: #666;
+  position: relative;
+  border-bottom: 1px #ccc solid;
+}
+
 .detail-post-avatar, .detail-post-comment-avatar {
   
   width: 46px;
