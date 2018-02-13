@@ -30,6 +30,7 @@ function getDateDiff(dateTimeStamp){
 	var dayC =diffValue/day;
 	var hourC =diffValue/hour;
 	var minC =diffValue/minute;
+  var result = '';
 	if(monthC>=1){
 		result="" + parseInt(monthC) + "月前";
 	}
