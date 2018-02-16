@@ -4,22 +4,20 @@ Page({
   data:{
     // text:"这是一个页面"
     datas: [],
-    hidden: false,
     logs:[],
     title: "话题列表",
     offset: 0,
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    console.log('onLoad');
+    wx.showLoading({
+      title: '加载中',
+    });
     this.fetchData({node_id: 19});
   },
 
   fetchData: function (data) {
     var self = this;
-    self.setData({
-      hidden: false
-    });
     if (!data) data = {};
     if (!data.offset) data.offset = 0;
     if (data.offset === 0) {
@@ -46,12 +44,9 @@ Page({
         });
         self.setData({
           datas: self.data.datas.concat(topices)
+        }, () => {
+          wx.hideLoading();
         });
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
       }
     });
   },
@@ -75,6 +70,9 @@ Page({
     var self = this;
     self.setData({
       offset: self.data.offset + 20
+    });
+    wx.showLoading({
+      title: '加载中',
     });
     this.fetchData({node_id: 19, offset: self.data.offset});
   },

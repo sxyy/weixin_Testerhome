@@ -21,7 +21,8 @@
             <view class="cellrow">
               <text class="celldetail">{{item.node_name}}</text>
               <view class="replycountBg">
-                {{item.replies_count}}
+                <text>{{item.replies_count}}</text>
+                
               </view>
             </view>
           </view>

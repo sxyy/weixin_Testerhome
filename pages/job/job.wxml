@@ -2,8 +2,4 @@
 <import src="../template/template.wxml"/>
 <view class="container">
   <template is="topicList" data="{{datas}}"/>
-
-  <loading hidden="{{hidden}}">
-    加载中...
-  </loading>
 </view>

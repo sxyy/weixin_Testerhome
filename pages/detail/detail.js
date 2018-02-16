@@ -7,7 +7,6 @@ Page({
     detail: {},
     wemark: {},
     wemark2: {},
-    hidden: false,
     replies: [],
     content_hidden: false,
     reply_hidden: true,
@@ -16,12 +15,11 @@ Page({
     topicid: -1,
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    })
     this.fetchData(options.id);
     this.fetchReplyData(options.id);
-  },
-
-  test() {
-    console.log('ss')
   },
 
   onReady: function () {
@@ -37,7 +35,6 @@ Page({
   fetchData: function (id) {
     var self = this;
     self.setData({
-      hidden: false,
       topicid: id,
     });
     wx.request({
@@ -58,12 +55,10 @@ Page({
         WxParse.wxParse('topicBody', 'md', res.data.topic.body, self, 5);
         self.setData({
           detail: res.data.topic
+        }, () => {
+          wx.hideLoading();
         });
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
+        
       }
     });
 
@@ -117,7 +112,17 @@ Page({
 
           self.setData({
             replies: mReplies
+          }, () => {
+            // 这里需要判断是否为刚进入帖子详情页面
+            if (data.offset !== 0) {
+              wx.hideLoading();
+            }
+            
           });
+        }else {
+          if (data.offset !== 0) {
+            wx.hideLoading();
+          }
         }
         
       }
@@ -144,17 +149,22 @@ Page({
   },
 
   lower: function (e) {
-
-    console.log("加载跟多");
     var self = this;
     if (self.data.replies.length >= 20 && self.data.replies.length % 10 === 0) {
       self.setData({
         offset: self.data.offset + 20
       });
+      wx.showLoading({
+        title: '加载中',
+      })
       self.fetchReplyData(self.data.topicid, { offset: self.data.offset });
     }
 
   },
   scrolls: function (e) {
+  },
+
+  wxParseTagATap: function (e) {
+    console.log(e);
   }
 })

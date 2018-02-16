@@ -4,7 +4,7 @@ Page({
   data:{
     // text:"这是一个页面"
     datas: [],
-    hidden: false,
+    hidden: true,
     logs:[],
     title: "话题列表",
     type: "recent",
@@ -31,15 +31,15 @@ Page({
         });
       }
     });
+    wx.showLoading({
+      title: '加载中',
+    })
     this.fetchData({type: 'recent'});
     this.fetchAds();
   },
 
   fetchData: function (data) {
     var self = this;
-    self.setData({
-      hidden: false
-    });
     if (!data) data = {};
     if (!data.offset) {
       data.offset = 0;
@@ -55,6 +55,7 @@ Page({
     wx.request({
       url: Api.getTopics(data),
       success: function (res) {
+        
         var topices = res.data.topics.map(function (item) {
           item.replies_count = parseInt(item.replies_count)
           item.created_at = util.getDateDiff(new Date(item.created_at));
@@ -69,14 +70,12 @@ Page({
         topices = topices.filter(item => {
           return item.suggested_at === null
         })
+        
         self.setData({
           datas: self.data.datas.concat(topices)
+        }, () => {
+          wx.hideLoading();
         });
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
       }
     });
   },
@@ -103,6 +102,9 @@ Page({
 
   onTapTag: function (e) {
     var self = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     var tab = e.currentTarget.id;
     if (tab !== 'recent') {
       self.setData({
@@ -172,6 +174,9 @@ Page({
     var self = this;
     self.setData({
       offset: self.data.offset + 20
+    });
+    wx.showLoading({
+      title: '加载中',
     });
     this.fetchData({type: self.data.type, offset: self.data.offset});
   },
