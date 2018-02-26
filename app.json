@@ -21,7 +21,7 @@
       "pagePath": "pages/home/home",
       "iconPath": "images/tab_main_home.png",
       "selectedIconPath": "images/tab_main_selected_home.png",
-      "text": "社区"
+      "text": "资讯"
     }, {
       "pagePath": "pages/topics/topics",
       "iconPath": "images/tab_main_topic.png",

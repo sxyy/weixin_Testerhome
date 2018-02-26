@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <import src="../template/template.wxml"/>
 <view class="container">
-  <template is="topicList" data="{{datas}}"/>
+  <template is="topicList" data="{{datas}}"/> 
 </view>
+
